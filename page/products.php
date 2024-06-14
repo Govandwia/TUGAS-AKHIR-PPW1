@@ -74,153 +74,102 @@
       <div class="container">
         <div class="row">
           <div class="col-md-12">
-            <h1>Products</h1>
+            <div class="text-center"></div>
             <span>Lorem ipsum dolor sit amet.</span>
           </div>
         </div>
       </div>
     </div>
-
     <div class="services">
       <div class="container">
         <div class="row">
-          <div class="col-md-4">
-            <div class="service-item">
-              <img src="../assets/images/product-1-720x480.jpg" alt="">
-              <div class="down-content">
-                <h4>Lorem ipsum dolor sit amet</h4>
-                <div style="margin-bottom:10px;">
-                  <span>
-                      <del><sup>$</sup>1999 </del> &nbsp; <sup>$</sup>1779
-                  </span>
+          <?php
+
+          // Fetch all products from the database
+          $sql = "SELECT * FROM products";
+          $result = mysqli_query($conn, $sql);
+
+          // Check if there are any products
+          if (mysqli_num_rows($result) > 0) {
+            // Get the current page number from the URL
+            $page = isset($_GET['page']) ? $_GET['page'] : 1;
+
+            // Calculate the starting index of the products for the current page
+            $start = ($page - 1) * 6;
+
+            // Fetch only 6 products for the current page
+            $sql .= " LIMIT $start, 6";
+            $result = mysqli_query($conn, $sql);
+
+            // Loop through each product and display it
+            while ($row = mysqli_fetch_assoc($result)) {
+              ?>
+              <div class="col-md-4">
+                <div class="service-item">
+                  <img src="<?php echo $row['image_url']; ?>" alt="">
+                  <div class="down-content">
+                    <h4><?php echo $row['name']; ?></h4>
+                    <div style="margin-bottom:10px;">
+                      <span>
+                        <del><sup>$</sup><?php echo $row['price']; ?> 
+                      </span>
+                    </div>
+
+                    <p><?php echo $row['description']; ?></p>
+                    <p>Stock: <?php echo $row['stock']; ?></p>
+                    <a href="product-details.html" class="filled-button">View More</a>
+                  </div>
                 </div>
 
-                <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis asperiores eveniet iure impedit soluta aliquid. </p>
-                <a href="product-details.html" class="filled-button">View More</a>
+                <br>
               </div>
-            </div>
+              <?php
+            }
 
-            <br>
-          </div>
+            // Calculate the total number of pages
+            $total_pages = ceil(mysqli_num_rows($result) / 6);
 
-          <div class="col-md-4">
-            <div class="service-item">
-              <img src="../assets/images/product-2-720x480.jpg" alt="">
-              <div class="down-content">
-                <h4>Lorem ipsum dolor sit amet</h4>
-                <div style="margin-bottom:10px;">
-                  <span>
-                      <del><sup>$</sup>1999 </del> &nbsp; <sup>$</sup>1779
-                  </span>
-                </div>
+            // Display the pagination links
+            ?>
+            <nav>
+              <ul class="pagination pagination-lg justify-content-center">
+                <?php if ($page > 1) { ?>
+                  <li class="page-item">
+                    <a class="page-link" href="?page=<?php echo $page - 1; ?>" aria-label="Previous">
+                      <span aria-hidden="true">«</span>
+                      <span class="sr-only">Previous</span>
+                    </a>
+                  </li>
+                <?php } ?>
+                <?php for ($i = 1; $i <= $total_pages; $i++) { ?>
+                  <li class="page-item <?php echo ($i == $page) ? 'active' : ''; ?>">
+                    <a class="page-link" href="?page=<?php echo $i; ?>"><?php echo $i; ?></a>
+                  </li>
+                <?php } ?>
+                <?php if ($page < $total_pages) { ?>
+                  <li class="page-item">
+                    <a class="page-link" href="?page=<?php echo $page + 1; ?>" aria-label="Next">
+                      <span aria-hidden="true">»</span>
+                      <span class="sr-only">Next</span>
+                    </a>
+                  </li>
+                <?php } ?>
+              </ul>
+            </nav>
+            <?php
+          } else {
+            echo "No products found.";
+          }
 
-                <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic, impedit itaque delectus laboriosam quas veniam. </p>
-                <a href="product-details.html" class="filled-button">View More</a>
-              </div>
-            </div>
-
-            <br>
-          </div>
-
-          <div class="col-md-4">
-            <div class="service-item">
-              <img src="../assets/images/product-3-720x480.jpg" alt="">
-              <div class="down-content">
-                <h4>Lorem ipsum dolor sit amet</h4>
-                <div style="margin-bottom:10px;">
-                  <span>
-                      <del><sup>$</sup>1999 </del> &nbsp; <sup>$</sup>1779
-                  </span>
-                </div>
-
-                <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Id eius at unde natus, sit possimus. </p>
-                <a href="product-details.html" class="filled-button">View More</a>
-              </div>
-            </div>
-
-            <br>
-          </div>
-
-          <div class="col-md-4">
-            <div class="service-item">
-              <img src="../2assets/images/product-4-720x480.jpg" alt="">
-              <div class="down-content">
-                <h4>Lorem ipsum dolor sit amet</h4>
-                <div style="margin-bottom:10px;">
-                  <span>
-                      <del><sup>$</sup>1999 </del> &nbsp; <sup>$</sup>1779
-                  </span>
-                </div>
-
-                <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab voluptatibus cupiditate repudiandae hic odio quas. </p>
-                <a href="product-details.html" class="filled-button">View More</a>
-              </div>
-            </div>
-
-            <br>
-          </div>
-
-          <div class="col-md-4">
-            <div class="service-item">
-              <img src="../assets/images/product-5-720x480.jpg" alt="">
-              <div class="down-content">
-                <h4>Lorem ipsum dolor sit amet</h4>
-                <div style="margin-bottom:10px;">
-                  <span>
-                      <del><sup>$</sup>1999 </del> &nbsp; <sup>$</sup>1779
-                  </span>
-                </div>
-
-                <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Placeat in a repellendus nobis! Iure, eveniet! </p>
-                <a href="product-details.html" class="filled-button">View More</a>
-              </div>
-            </div>
-
-            <br>
-          </div>
-
-          <div class="col-md-4">
-            <div class="service-item">
-              <img src="../assets/images/product-6-720x480.jpg" alt="">
-              <div class="down-content">
-                <h4>Lorem ipsum dolor sit amet</h4>
-                <div style="margin-bottom:10px;">
-                  <span>
-                      <del><sup>$</sup>1999 </del> &nbsp; <sup>$</sup>1779
-                  </span>
-                </div>
-
-                <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque quis quam porro. Sint, in, at. </p>
-                <a href="product-details.html" class="filled-button">View More</a>
-              </div>
-            </div>
-
-            <br>
-          </div>
+          // Close the database connection
+          mysqli_close($conn);
+          ?>
         </div>
 
         <br>
         <br>
-
-        <nav>
-          <ul class="pagination pagination-lg justify-content-center">
-            <li class="page-item">
-              <a class="page-link" href="#" aria-label="Previous">
-                <span aria-hidden="true">«</span>
-                <span class="sr-only">Previous</span>
-              </a>
-            </li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item">
-              <a class="page-link" href="#" aria-label="Next">
-                <span aria-hidden="true">»</span>
-                <span class="sr-only">Next</span>
-              </a>
-            </li>
-          </ul>
-        </nav>
+      </div>
+    </div>
 
         <br>
         <br>

@@ -137,74 +137,88 @@ include 'conect.php';
       </div>
     </div>
   </div>
-  <?php
 
-  $sql = "SELECT * FROM products";
-  $result = $conn->query($sql);
-  if ($result->num_rows > 0) {
-    echo '<div class="services">
-          <div class="container">
-            <div class="row">
-              <div class="col-md-12">
-                <div class="section-heading">
-                  <h2>Featured <em>Products</em></h2>
-                  <span>Aliquam id urna imperdiet libero mollis hendrerit</span>
-                </div>
-              </div>';
-
-    $counter = 0;
-    while ($row = $result->fetch_assoc()) {
-      if ($counter >= 6) {
-        break;
-      }
-      echo '<div class="col-md-4">
-            <div class="service-item">
-              <img src="' . $row["image"] . '" alt="">
-              <div class="down-content">
-                <h4>' . $row["name"] . '</h4>
-                <div style="margin-bottom:10px;">
-                  <span> <del><sup>$</sup>' . $row["original_price"] . '</del>  <sup>$</sup>' . $row["discounted_price"] . ' </span>
-                </div>
-                <p>' . $row["description"] . '</p>
-                <a href="product-details.html" class="filled-button">View More</a>
-              </div>
-            </div>
-            <br>
-          </div>';
-
-      $counter++;
-    }
-
-    echo '</div></div></div>';
-  } else {
-    echo "No products found.";
-  }
-
-  $conn->close();
-  ?>
-
-  <div class="fun-facts">
+  <div class="services">
     <div class="container">
-      <div class="more-info-content">
-        <div class="row">
-          <div class="col-md-6">
-            <div class="left-image">
-              <img src="assets/images/about-1-570x350.jpg" class="img-fluid" alt="">
-            </div>
-          </div>
-          <div class="col-md-6 align-self-center">
-            <div class="right-content">
-              <span>Who we are</span>
-              <h2>Get to know about <em>our company</em></h2>
-              <p>Curabitur pulvinar sem a leo tempus facilisis. Sed non sagittis neque. Nulla conse quat tellus nibh, id
-                molestie felis sagittis ut. Nam ullamcorper tempus ipsum in cursus</p>
-              <a href="about.html" class="filled-button">Read More</a>
-            </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="section-heading">
+            <h2>Featured <em>Products</em></h2>
+            <span>Aliquam id urna imperdiet libero mollis hendrerit</span>
           </div>
         </div>
+
+        <?php
+        $sql = "SELECT * FROM products WHERE id BETWEEN 1 AND 3";
+        $result = $conn->query($sql);
+        if ($result->num_rows > 0) {
+          while ($row = $result->fetch_assoc()) {
+            echo '<div class="col-md-4">
+              <div class="service-item" style="height: 400px;">
+                <img src="' . $row["image_url"] . '" alt="">
+                <div class="down-content">
+                  <h4>' . $row["name"] . '</h4>
+                  <p>' . $row["description"] . '</p>
+                  <div class="price-stock">
+                    <span>Price: $' . $row["price"] . '</span>
+                    <span>Stock: ' . $row["stock"] . '</span>
+                  </div>
+                  <a href="product-details.html" class="filled-button">View More</a>
+                </div>
+              </div>
+            </div>';
+          }
+        } else {
+          echo "No products found.";
+        }
+        ?>
+
       </div>
     </div>
   </div>
+  <br><br><br><br><br><br>  <br><br><br><br><br><br>  
+  
+  <div class="new-arrivals">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="section-heading">
+            <h2>New Arrivals</h2>
+            <span>Check out our latest products</span>
+          </div>
+        </div>
+
+        <?php
+        $sql = "SELECT * FROM products WHERE id BETWEEN 4 AND 6";
+        $result = $conn->query($sql);
+        if ($result->num_rows > 0) {
+          while ($row = $result->fetch_assoc()) {
+            echo '<div class="col-md-4">
+              <div class="service-item" style="height: 400px;">
+                <img src="' . $row["image_url"] . '" alt="">
+                <div class="down-content">
+                  <h4>' . $row["name"] . '</h4>
+                  <p>' . $row["description"] . '</p>
+                  <div class="price-stock">
+                    <span>Price: $' . $row["price"] . '</span>
+                    <span>Stock: ' . $row["stock"] . '</span>
+                  </div>
+                  <a href="product-details.html" class="filled-button">View More</a>
+                </div>
+              </div>
+            </div>';
+          }
+        } else {
+          echo "No products found.";
+        }
+        ?>
+
+      </div>
+    </div>
+  </div>
+  <br><br><br><br><br><br>
+  <br><br><br><br><br><br>
+  <br><br><br><br><br><br>
   <div class="container">
     <div class="row">
       <div class="col-md-12">
