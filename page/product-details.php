@@ -1,5 +1,5 @@
 <?php
-  include 'conect.php';
+  include '../conect.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -36,59 +36,32 @@
     <!-- ***** Preloader End ***** -->
 
     <!-- Header -->
-    <div class="sub-header">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-8 col-xs-12">
-            <ul class="left-info">
-              <li><a href="#"><i class="fa fa-envelope"></i>contact@company.com</a></li>
-              <li><a href="#"><i class="fa fa-phone"></i>123-456-7890</a></li>
-            </ul>
-          </div>
-          <div class="col-md-4">
-            <ul class="right-icons">
-              <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-              <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-              <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-    
+
     <header class="">
       <nav class="navbar navbar-expand-lg">
         <div class="container">
-          <a class="navbar-brand" href="index.html"><h2>Mobile Store<em> Website</em></h2></a>
+          <a class="navbar-brand" href="index.html"><h2>GG<em> labs</em></h2></a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
               <li class="nav-item">
-                <a class="nav-link" href="index.html">Home
-                  <span class="sr-only">(current)</span>
-                </a>
-              </li>
-              <li class="nav-item active">
-                <a class="nav-link" href="products.html">Products</a>
+                <a class="nav-link" href="../landingpage.php">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="checkout.html">Checkout</a>
+                <a class="nav-link" href="products.php">Products</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="checkout.php">Checkout</a>
               </li>
               <li class="nav-item dropdown">
-                <a class="dropdown-toggle nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">About</a>
+                <a class="dropdown-toggle nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">account</a>
               
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="about.html">About Us</a>
-                    <a class="dropdown-item" href="blog.html">Blog</a>
-                    <a class="dropdown-item" href="testimonials.html">Testimonials</a>
-                    <a class="dropdown-item" href="terms.html">Terms</a>
+                    <a class="dropdown-item" href="login.php">sign in</a>
+                    <a class="dropdown-item" href="signup.php">sign up</a>
                 </div>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="contact.html">Contact Us</a>
-              </li>
             </ul>
           </div>
         </div>
@@ -196,27 +169,39 @@
         </div>
 
         <br>
-
-        <h4>Description</h4>
-
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea illum necessitatibus adipisci cum dolor quam magnam similique quasi iure blanditiis?</p>
-
-        <br>
-
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum minus reprehenderit, porro alias pariatur perferendis, eaque possimus fugit doloribus perspiciatis.</p>
-
-        <br>
-
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur expedita, blanditiis soluta, laudantium veritatis esse nulla quasi praesentium ea architecto vero. Nemo nesciunt veritatis maxime accusamus ipsa optio inventore rem cupiditate vero vitae cumque necessitatibus nisi, sapiente possimus perspiciatis, corporis!</p>
-
-        <br>
-
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde ratione animi aliquid, non ipsum soluta similique rerum commodi! Ullam quam cupiditate reiciendis a labore. Eos rerum deserunt, sequi dolores vitae consectetur harum animi officiis id vel similique qui, laborum corrupti fuga maiores maxime! Quasi, asperiores nobis accusamus similique est modi totam corporis perferendis consequuntur ea tempore, corrupti provident quos quo.</p>
-
-
-
-        <br>
-        <br>
+        <div class="row">
+          <div class="col-md-12">
+            <h4>Reviews</h4>
+            <div class="review">
+              <div class="review-user">
+                <img src="../assets/images/user-1.jpg" alt="">
+                <span>John Doe</span>
+              </div>
+              <div class="review-content">
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam, voluptate.</p>
+              </div>
+            </div>
+            <div class="review">
+              <div class="review-user">
+                <img src="../assets/images/user-2.jpg" alt="">
+                <span>Jane Smith</span>
+              </div>
+              <div class="review-content">
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam, voluptate.</p>
+              </div>
+            </div>
+            <div class="review">
+              <div class="review-user">
+                <img src="../assets/images/user-3.jpg" alt="">
+                <span>David Johnson</span>
+              </div>
+              <div class="review-content">
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam, voluptate.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
         <br>
       </div>
     </div>

@@ -1,5 +1,5 @@
 <?php
-  include 'conect.php';
+  include '../conect.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -11,7 +11,7 @@
   <meta name="author" content="">
   <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
 
-  <title>Login Page</title>
+  <title>Signup Page</title>
 
   <!-- Bootstrap core CSS -->
   <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -29,17 +29,21 @@
       <div class="col-md-6">
         <div class="card mt-5">
           <div class="card-body">
-            <h2 class="card-title text-center">Login</h2>
-            <form>
+            <h2 class="card-title text-center">Signup</h2>
+            <form action="/signup" method="POST"></form>
               <div class="form-group">
                 <label for="username">Username</label>
                 <input type="text" class="form-control" id="username" placeholder="Enter your username">
               </div>
               <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" id="email" placeholder="Enter your email">
+              </div>
+              <div class="form-group">
                 <label for="password">Password</label>
                 <input type="password" class="form-control" id="password" placeholder="Enter your password">
               </div>
-              <button type="submit" class="btn btn-primary btn-block">Login</button>
+              <button type="submit" class="btn btn-primary btn-block">Signup</button>
             </form>
           </div>
         </div>
