@@ -1,6 +1,12 @@
 <?php
   include '../conect.php';
-?>
+
+  // Fetch data from the order_items table
+  $query = "SELECT * FROM order_items";
+  $result = mysqli_query($conn, $query);
+
+  
+  ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -81,73 +87,39 @@
         </div>
       </div>
     </div>
+<?php
+// Check if the query was successful
+if ($result) {
+  // Loop through the rows of data
+  while ($row = mysqli_fetch_assoc($result)) {
+    // Access the data fields and display them
+    $product_name = $row['product_name'];
+    $price = $row['price'];
+    $quantity = $row['quantity'];
+    
+    // Display the product information
+    echo "<li class='list-group-item'>
+        <div class='row'>
+          <div class='col-4'>
+            <em>$name</em>
+          </div>
+          <div class='col-4 text-right'>
+            <strong>$price</strong>
+          </div>
+          <div class='col-4 text-right'>
+            <strong>$quantity</strong>
+          </div>
+        </div>
+      </li>";
+  }
+} else {
+  // Display an error message if the query fails
+  echo "Error: " . mysqli_error($conn);
+}
 
-    <div class="contact-information">
-      <div class="container">
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">
-            <div class="row">
-                  <div class="col-6">
-                       <em>Sub-total</em>
-                  </div>
-                  
-                  <div class="col-6 text-right">
-                       <strong>$ 128.00</strong>
-                  </div>
-             </div>
-          </li>
-          
-          <li class="list-group-item">
-               <div class="row">
-                    <div class="col-6">
-                         <em>Extra</em>
-                    </div>
-
-                    <div class="col-6 text-right">
-                         <strong>$ 0.00</strong>
-                    </div>
-               </div>
-          </li>
-
-          <li class="list-group-item">
-               <div class="row">
-                    <div class="col-6">
-                         <em>Tax</em>
-                    </div>
-
-                    <div class="col-6 text-right">
-                         <strong>$ 10.00</strong>
-                    </div>
-               </div>
-          </li>
-
-          <li class="list-group-item">
-               <div class="row">
-                    <div class="col-6">
-                         <em>Total</em>
-                    </div>
-
-                    <div class="col-6 text-right">
-                         <strong>$ 138.00</strong>
-                    </div>
-               </div>
-          </li>
-
-          <li class="list-group-item">
-               <div class="row">
-                    <div class="col-6">
-                         <em>Deposit payment required</em>
-                    </div>
-
-                    <div class="col-6 text-right">
-                         <strong>$ 20.00</strong>
-                    </div>
-               </div>
-          </li>
-        </ul>
-      </div>
-    </div>
-
+// Close the database connection
+mysqli_close($conn);
+?>
     <div class="callback-form contact-us">
       <div class="container">
         <div class="row">

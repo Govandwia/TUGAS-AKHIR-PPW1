@@ -121,10 +121,11 @@
             <br>
             <br>
           
-            <h4>Add to Cart</h4>
-
-            <br>
-
+            <form action="../method/add_to_cart.php" method="POST">
+              <input type="hidden" name="product_id" value="<?php echo $product['id']; ?>">
+              <input type="hidden" name="product_name" value="<?php echo $product['name']; ?>">
+              <input type="hidden" name="product_price" value="<?php echo $product['price']; ?>">
+              <input type="hidden" name="product_image" value="<?php echo $product['image_url']; ?>">
               <div class="row">
                 <div class="col-md-6 col-sm-12">
                   <div class="form-group">
@@ -139,6 +140,7 @@
                 </div>
               </div>
             </form>
+
 
             <br>
           </div>
