@@ -1,12 +1,11 @@
 <?php
   include '../conect.php';
-
-  // Fetch data from the order_items table
+  // Fetch cart items from the database
   $query = "SELECT * FROM order_items";
   $result = mysqli_query($conn, $query);
 
   
-  ?>
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -87,153 +86,52 @@
         </div>
       </div>
     </div>
-<?php
-// Check if the query was successful
-if ($result) {
-  // Loop through the rows of data
-  while ($row = mysqli_fetch_assoc($result)) {
-    // Access the data fields and display them
-    $product_name = $row['product_name'];
-    $price = $row['price'];
-    $quantity = $row['quantity'];
-    
-    // Display the product information
-    echo "<li class='list-group-item'>
-        <div class='row'>
-          <div class='col-4'>
-            <em>$name</em>
-          </div>
-          <div class='col-4 text-right'>
-            <strong>$price</strong>
-          </div>
-          <div class='col-4 text-right'>
-            <strong>$quantity</strong>
-          </div>
-        </div>
-      </li>";
+    <div class="container">
+      <h2>Checkout</h2>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Product ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Price</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Subtotal</th>
+          </tr>
+        </thead>
+        <tbody>
+          <?php
+          // Check if the query was successful
+  if ($result) {
+    // Fetch the total from the database
+    $totalQuery = "SELECT SUM(quantity * price) AS total FROM order_items";
+    $totalResult = mysqli_query($conn, $totalQuery);
+    $totalRow = mysqli_fetch_assoc($totalResult);
+    $total = $totalRow['total'];
+
+    // Display the cart items
+    while ($item = mysqli_fetch_assoc($result)) {
+      $subtotal = $item['quantity'] * $item['price'];
+      ?>
+      <tr>
+        <td><?php echo $item['product_id']; ?></td>
+        <td><?php echo $item['name']; ?></td>
+        <td>$<?php echo $item['price']; ?></td>
+        <td><?php echo $item['quantity']; ?></td>
+        <td>$<?php echo $subtotal; ?></td>
+      </tr>
+      <?php
+    }
+  } else {
+    echo "Error fetching cart items: " . mysqli_error($conn);
   }
-} else {
-  // Display an error message if the query fails
-  echo "Error: " . mysqli_error($conn);
-}
-
-// Close the database connection
-mysqli_close($conn);
-?>
-    <div class="callback-form contact-us">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
-            <div class="contact-form">
-              <form action="#" id="contact">
-                 <div class="row">
-                      <div class="col-sm-6 col-xs-12">
-                           <div class="form-group">
-                                <select class="form-control" data-msg-required="This field is required.">
-                                     <option value="">-- Choose Title --</option>
-                                     <option value="dr">Dr.</option>
-                                     <option value="miss">Miss</option>
-                                     <option value="mr">Mr.</option>
-                                     <option value="mrs">Mrs.</option>
-                                     <option value="ms">Ms.</option>
-                                     <option value="other">Other</option>
-                                     <option value="prof">Prof.</option>
-                                     <option value="rev">Rev.</option>
-                                </select>
-                           </div>
-                      </div>
-                      <div class="col-sm-6 col-xs-12">
-                           <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Name:">
-                           </div>
-                      </div>
-                 </div>
-                 <div class="row">
-                      <div class="col-sm-6 col-xs-12">
-                           <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Email:">
-                           </div>
-                      </div>
-                      <div class="col-sm-6 col-xs-12">
-                           <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Phone:">
-                           </div>
-                      </div>
-                 </div>
-                 <div class="row">
-                      <div class="col-sm-6 col-xs-12">
-                           <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Address 1:">
-                           </div>
-                      </div>
-                      <div class="col-sm-6 col-xs-12">
-                           <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Address 2:">
-                           </div>
-                      </div>
-                 </div>
-                 <div class="row">
-                      <div class="col-sm-6 col-xs-12">
-                           <div class="form-group">
-                                <input type="text" class="form-control" placeholder="City:">
-                           </div>
-                      </div>
-                      <div class="col-sm-6 col-xs-12">
-                           <div class="form-group">
-                                <input type="text" class="form-control" placeholder="State:">
-                           </div>
-                      </div>
-                 </div>
-                 <div class="row">
-                      <div class="col-sm-6 col-xs-12">
-                           <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Zip:">
-                           </div>
-                      </div>
-                      <div class="col-sm-6 col-xs-12">
-                           <div class="form-group">
-                                <select class="form-control">
-                                     <option value="">-- Choose Country --</option>
-                                     <option value="">-- Choose --</option>
-                                     <option value="">-- Choose --</option>
-                                     <option value="">-- Choose --</option>
-                                </select>
-                           </div>
-                      </div>
-                 </div>
-
-                 <div class="row">
-                      <div class="col-sm-6 col-xs-12">
-                           <div class="form-group">
-                                <select class="form-control">
-                                     <option value="">-- Choose Payment method --</option>
-                                     <option value="bank">Bank account</option>
-                                     <option value="cash">Cash</option>
-                                     <option value="paypal">PayPal</option>
-                                </select>
-                           </div>
-                      </div>
-
-                      <div class="col-sm-6 col-xs-12">
-                           <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Captcha">
-                           </div>
-                      </div>
-                 </div>
-
-                 <div class="row">
-                   <div class="col-lg-12">
-                      <button type="submit" id="form-submit" class="filled-button">Finish</button>
-                  </div>
-                 </div>
-              </form>
-
-            </div>
-          </div>
-        </div>
-      </div>
+       ?>
+        </tbody>
+      </table>
+      <h4>Total: $<?php echo $total; ?></h4>
+      <form action="../methods/process_checkout.php" method="POST">
+        <button type="submit" class="btn btn-primary" name="checkout">Checkout</button>
+      </form>
     </div>
-
     <!-- Footer Starts Here -->
     <footer>
       <div class="container">

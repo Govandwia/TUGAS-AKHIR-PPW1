@@ -1,22 +1,16 @@
-
 <?php
   include '../conect.php';
-
-  // Get the product ID from the URL
   $product_id = $_GET['id'];
 
-  // Fetch the product details from the database based on the ID
+  // Fetch the product details from the database based on the product_id
   $query = "SELECT * FROM products WHERE id = $product_id";
   $result = mysqli_query($conn, $query);
   $product = mysqli_fetch_assoc($result);
-
-  // Close the database connection
-  mysqli_close($conn);
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
-  <>
+
+  <head>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -34,8 +28,9 @@
     <link rel="stylesheet" href="../assets/css/style.css">
     <link rel="stylesheet" href="../assets/css/owl.css">
   </head>
+
   <body>
-    
+
     <!-- ***** Preloader Start ***** -->
     <div id="preloader">
         <div class="jumper">
@@ -60,10 +55,8 @@
               <li class="nav-item">
                 <a class="nav-link" href="../landingpage.php">Home</a>
               </li>
-              <li class="nav-item active">
-                <a class="nav-link" href="products.php">Products
-                <span class="sr-only">(current)</span>
-                </a>
+              <li class="nav-item">
+                <a class="nav-link" href="products.php">Products</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="checkout.php">Checkout</a>
@@ -80,110 +73,39 @@
         </div>
       </nav>
     </header>
-    
+
     <!-- Page Content -->
     <div class="page-heading header-text">
       <div class="container">
         <div class="row">
           <div class="col-md-12">
-            <h1><small><del><sup>$</sup><?php echo $product['price']; ?></del></small> &nbsp; <sup>$</sup></h1>
+            <h1><small><del><sup>$</sup>1999 </del></small> &nbsp; <sup>$</sup>1779</h1>
             <span>
-                <?php echo $product['description']; ?>
+                Lorem ipsum dolor sit amet.
             </span>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="services">
-      <div class="container">
+    <div class="container">
         <div class="row">
-          <div class="col-md-7">
-            <div>
-              <img src="<?php echo $product['image_url']; ?>" alt="" class="img-fluid wc-image">
+            <div class="col-md-6">
+                <img src="<?php echo $product['image_url']; ?>" alt="<?php echo $product['name']; ?>" class="img-fluid">
             </div>
-
             <br>
-            <br>
-          </div>
-
-          <div class="col-md-5">
-            <div class="sidebar-item recent-posts">
-              <div class="sidebar-heading">
-                <h4>Info</h4>
-              </div>
-
-              <div class="content">
-                <p><?php echo $product['description']; ?></p>
-              </div>
+            <div class="col-md-6">
+                <h2><?php echo $product['name']; ?></h2>
+                <p class="text-muted"><?php echo $product['description']; ?></p>
+                <p class="price">$<?php echo $product['price']; ?></p>
+                <form action="" method="POST">
+                    <input type="hidden" name="product_id" value="<?php echo $product['id']; ?>">
+                    <input type="hidden" name="quantity" value="1"> <!-- Sementara tetap 1, bisa disesuaikan dengan kebutuhan -->
+                    <button type="submit" class="btn btn-primary" name="add_to_cart">Add to Cart</button>
+                </form>
             </div>
-
-            <br>
-            <br>
-          
-            <form action="../method/add_to_cart.php" method="POST">
-              <input type="hidden" name="product_id" value="<?php echo $product['id']; ?>">
-              <input type="hidden" name="product_name" value="<?php echo $product['name']; ?>">
-              <input type="hidden" name="product_price" value="<?php echo $product['price']; ?>">
-              <input type="hidden" name="product_image" value="<?php echo $product['image_url']; ?>">
-              <div class="row">
-                <div class="col-md-6 col-sm-12">
-                  <div class="form-group">
-                    <label for="">Quantity</label>
-                    <input type="text" value="1" required="" class="form-control">
-                  </div>
-                </div>
-                <div class="col-lg-12">
-                  <div class="form-group">
-                    <a href="#"class="filled-button">Add to Cart</a>
-                  </div>
-                </div>
-              </div>
-            </form>
-
-
-            <br>
-          </div>
         </div>
-
-        <br>
-        <div class="row">
-          <div class="col-md-12">
-            <h4>Reviews</h4>
-            <div class="review">
-              <div class="review-user">
-                <img src="../assets/images/user-1.jpg" alt="">
-                <span>John Doe</span>
-              </div>
-              <div class="review-content">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam, voluptate.</p>
-              </div>
-            </div>
-            <div class="review">
-              <div class="review-user">
-                <img src="../assets/images/user-2.jpg" alt="">
-                <span>Jane Smith</span>
-              </div>
-              <div class="review-content">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam, voluptate.</p>
-              </div>
-            </div>
-            <div class="review">
-              <div class="review-user">
-                <img src="../assets/images/user-3.jpg" alt="">
-                <span>David Johnson</span>
-              </div>
-              <div class="review-content">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam, voluptate.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        <br>
-      </div>
     </div>
-
 
     <!-- Footer Starts Here -->
     <footer>
