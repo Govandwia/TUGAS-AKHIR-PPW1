@@ -1,7 +1,6 @@
 <?php
   include '../conect.php';
   $product_id = $_GET['id'];
-
   // Fetch the product details from the database based on the product_id
   $query = "SELECT * FROM products WHERE id = $product_id";
   $result = mysqli_query($conn, $query);
