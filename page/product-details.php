@@ -1,10 +1,22 @@
+
 <?php
   include '../conect.php';
+
+  // Get the product ID from the URL
+  $product_id = $_GET['id'];
+
+  // Fetch the product details from the database based on the ID
+  $query = "SELECT * FROM products WHERE id = $product_id";
+  $result = mysqli_query($conn, $query);
+  $product = mysqli_fetch_assoc($result);
+
+  // Close the database connection
+  mysqli_close($conn);
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
-
-  <head>
+  <>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -22,9 +34,8 @@
     <link rel="stylesheet" href="../assets/css/style.css">
     <link rel="stylesheet" href="../assets/css/owl.css">
   </head>
-
   <body>
-
+    
     <!-- ***** Preloader Start ***** -->
     <div id="preloader">
         <div class="jumper">
@@ -49,8 +60,10 @@
               <li class="nav-item">
                 <a class="nav-link" href="../landingpage.php">Home</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="products.php">Products</a>
+              <li class="nav-item active">
+                <a class="nav-link" href="products.php">Products
+                <span class="sr-only">(current)</span>
+                </a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="checkout.php">Checkout</a>
@@ -67,15 +80,15 @@
         </div>
       </nav>
     </header>
-
+    
     <!-- Page Content -->
     <div class="page-heading header-text">
       <div class="container">
         <div class="row">
           <div class="col-md-12">
-            <h1><small><del><sup>$</sup>1999 </del></small> &nbsp; <sup>$</sup>1779</h1>
+            <h1><small><del><sup>$</sup><?php echo $product['price']; ?></del></small> &nbsp; <sup>$</sup></h1>
             <span>
-                Lorem ipsum dolor sit amet.
+                <?php echo $product['description']; ?>
             </span>
           </div>
         </div>
@@ -87,32 +100,10 @@
         <div class="row">
           <div class="col-md-7">
             <div>
-              <img src="../assets/images/product-1-720x480.jpg" alt="" class="img-fluid wc-image">
+              <img src="<?php echo $product['image_url']; ?>" alt="" class="img-fluid wc-image">
             </div>
 
             <br>
-
-            <div class="row">
-              <div class="col-sm-4 col-6">
-                <div>
-                  <img src="../assets/images/product-1-720x480.jpg" alt="" class="img-fluid">
-                </div>
-                <br>
-              </div>
-              <div class="col-sm-4 col-6">
-                <div>
-                  <img src="../assets/images/product-2-720x480.jpg" alt="" class="img-fluid">
-                </div>
-                <br>
-              </div>
-              <div class="col-sm-4 col-6">
-                <div>
-                  <img src="../assets/images/product-3-720x480.jpg" alt="" class="img-fluid">
-                </div>
-                <br>
-              </div>
-            </div>
-
             <br>
           </div>
 
@@ -123,7 +114,7 @@
               </div>
 
               <div class="content">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sed velit eveniet quibusdam animi eos, cum! Alias, dicta. Minima repudiandae sequi iste, nostrum!</p>
+                <p><?php echo $product['description']; ?></p>
               </div>
             </div>
 
@@ -133,21 +124,6 @@
             <h4>Add to Cart</h4>
 
             <br>
-
-            <form action="" method="post">
-              <div class="row">
-                <div class="col-md-6 col-sm-12">
-                  <div class="form-group">
-                    <label for="">Extra 1</label>
-                    <select class="form-control">
-                      <option value="0">Extra A</option>
-                      <option value="0">Extra B</option>
-                      <option value="0">Extra C</option>
-                      <option value="0">Extra D</option>
-                    </select>
-                  </div>
-                </div>
-              </div>
 
               <div class="row">
                 <div class="col-md-6 col-sm-12">
@@ -205,6 +181,7 @@
         <br>
       </div>
     </div>
+
 
     <!-- Footer Starts Here -->
     <footer>

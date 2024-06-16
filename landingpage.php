@@ -149,10 +149,11 @@ include 'conect.php';
         </div>
 
         <?php
-        $sql = "SELECT * FROM products WHERE id BETWEEN 1 AND 3";
-        $result = $conn->query($sql);
-        if ($result->num_rows > 0) {
-          while ($row = $result->fetch_assoc()) {
+        for ($i = 1; $i <= 3; $i++) {
+          $sql = "SELECT * FROM products WHERE id = $i";
+          $result = $conn->query($sql);
+          if ($result->num_rows > 0) {
+            $row = $result->fetch_assoc();
             echo '<div class="col-md-4">
               <div class="service-item" style="height: 400px;">
                 <img src="' . $row["image_url"] . '" alt="">
@@ -160,19 +161,18 @@ include 'conect.php';
                   <h4>' . $row["name"] . '</h4>
                   <p>' . $row["description"] . '</p>
                   <div class="price-stock">
-                    <span>Price: $' . $row["price"] . '</span>
+                    <span>Price: ' . $row["price"] . '$</span><br>
                     <span>Stock: ' . $row["stock"] . '</span>
                   </div>
-                  <a href="product-details.html" class="filled-button">View More</a>
+                  <a href="page/product-details.php?id='. $row['id'] . '" class="filled-button">View More</a>
                 </div>
               </div>
             </div>';
+          } else {
+            echo "No products found.";
           }
-        } else {
-          echo "No products found.";
         }
         ?>
-
       </div>
     </div>
   </div>
@@ -189,10 +189,11 @@ include 'conect.php';
         </div>
 
         <?php
-        $sql = "SELECT * FROM products WHERE id BETWEEN 4 AND 6";
-        $result = $conn->query($sql);
-        if ($result->num_rows > 0) {
-          while ($row = $result->fetch_assoc()) {
+        for ($i = 4; $i <= 6; $i++) {
+          $sql = "SELECT * FROM products WHERE id = $i";
+          $result = $conn->query($sql);
+          if ($result->num_rows > 0) {
+            $row = $result->fetch_assoc();
             echo '<div class="col-md-4">
               <div class="service-item" style="height: 400px;">
                 <img src="' . $row["image_url"] . '" alt="">
@@ -200,18 +201,22 @@ include 'conect.php';
                   <h4>' . $row["name"] . '</h4>
                   <p>' . $row["description"] . '</p>
                   <div class="price-stock">
-                    <span>Price: $' . $row["price"] . '</span>
+                    <span>Price: $' . $row["price"] . '</span><br>
                     <span>Stock: ' . $row["stock"] . '</span>
                   </div>
-                  <a href="product-details.html" class="filled-button">View More</a>
+                  <a href="page/product-details.php?id=' . $row['id'] . '" class="filled-button">View More</a>
                 </div>
               </div>
             </div>';
+          } else {
+            echo "No products found.";
           }
-        } else {
-          echo "No products found.";
         }
         ?>
+
+            </div>
+          </div>
+        </div>
 
       </div>
     </div>

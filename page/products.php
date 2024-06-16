@@ -117,7 +117,7 @@
 
                     <p><?php echo $row['description']; ?></p>
                     <p>Stock: <?php echo $row['stock']; ?></p>
-                    <a href="product-details.html" class="filled-button">View More</a>
+                    <a href="product-details.php?id=<?php echo $row['id']; ?>" class="filled-button">View More</a>
                   </div>
                 </div>
 
