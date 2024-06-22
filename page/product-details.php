@@ -1,10 +1,14 @@
 <?php
   include '../conect.php';
+
+  
   $product_id = $_GET['id'];
   // Fetch the product details from the database based on the product_id
   $query = "SELECT * FROM products WHERE id = $product_id";
   $result = mysqli_query($conn, $query);
   $product = mysqli_fetch_assoc($result);
+
+  
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -31,13 +35,13 @@
   <body>
 
     <!-- ***** Preloader Start ***** -->
-    <div id="preloader">
+    <!-- <div id="preloader">
         <div class="jumper">
             <div></div>
             <div></div>
             <div></div>
         </div>
-    </div>  
+    </div>   -->
     <!-- ***** Preloader End ***** -->
 
     <!-- Header -->
@@ -86,7 +90,7 @@
         </div>
       </div>
     </div>
-
+    <br><br><br><br><br>
     <div class="container">
         <div class="row">
             <div class="col-md-6">
@@ -100,12 +104,26 @@
                 <form action="" method="POST">
                     <input type="hidden" name="product_id" value="<?php echo $product['id']; ?>">
                     <input type="hidden" name="quantity" value="1"> <!-- Sementara tetap 1, bisa disesuaikan dengan kebutuhan -->
+                    <?php
+                    if(isset($_POST['add_to_cart'])) {
+                      $product_id = $_POST['product_id'];
+                      $quantity = $_POST['quantity'];
+                      
+                      // Insert the product into the order_items table
+                      $insert_query = "INSERT INTO order_items (product_id, quantity, price) VALUES ('$product_id', '$quantity', '{$product['price']}')";
+                      mysqli_query($conn, $insert_query);
+                      
+                      // Redirect to the cart page or any other desired page
+                      header("Location: checkout.php");
+                      exit();
+                    }
+                    ?>
                     <button type="submit" class="btn btn-primary" name="add_to_cart">Add to Cart</button>
                 </form>
             </div>
         </div>
     </div>
-
+    <br><br><br><br><br>
     <!-- Footer Starts Here -->
     <footer>
       <div class="container">
