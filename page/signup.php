@@ -1,5 +1,26 @@
 <?php
-  include '../conect.php';
+include '../conect.php';
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $username = $_POST['username'];
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+
+    // Prepare and bind
+    $stmt = $conn->prepare("INSERT INTO users (username, password, email) VALUES (?, ?, ?)");
+    $stmt->bind_param("sss", $username, $password, $email);
+
+    if ($stmt->execute()) {
+        echo "<script>alert('Pengguna berhasil ditambahkan!'); window.location.href = '../landingpage.php';</script>";
+    } else {
+        echo "Error: " . $stmt->error;
+    }
+
+    $stmt->close();
+    $conn->close();
+}
+?>
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -30,18 +51,18 @@
         <div class="card mt-5">
           <div class="card-body">
             <h2 class="card-title text-center">Signup</h2>
-            <form action="/signup" method="POST"></form>
+            <form action="" method="POST">
               <div class="form-group">
                 <label for="username">Username</label>
-                <input type="text" class="form-control" id="username" placeholder="Enter your username">
+                <input type="text" class="form-control" id="username" name="username" placeholder="Enter your username" required>
               </div>
               <div class="form-group">
                 <label for="email">Email</label>
-                <input type="email" class="form-control" id="email" placeholder="Enter your email">
+                <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" required>
               </div>
               <div class="form-group">
                 <label for="password">Password</label>
-                <input type="password" class="form-control" id="password" placeholder="Enter your password">
+                <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password" required>
               </div>
               <button type="submit" class="btn btn-primary btn-block">Signup</button>
             </form>

@@ -147,37 +147,82 @@ include 'conect.php';
             <span>Aliquam id urna imperdiet libero mollis hendrerit</span>
           </div>
         </div>
+        <div class="services">
+          <div class="container">
+            <div class="row">
+              <?php
+              // Fetch all products from the database
+              $sql = "SELECT * FROM products WHERE id BETWEEN 1 AND 3";
+              $result = mysqli_query($conn, $sql);
 
-        <?php
-        for ($i = 1; $i <= 3; $i++) {
-          $sql = "SELECT * FROM products WHERE id = $i";
-          $result = $conn->query($sql);
-          if ($result->num_rows > 0) {
-            $row = $result->fetch_assoc();
-            echo '<div class="col-md-4">
-              <div class="service-item" style="height: 400px;">
-                <img src="' . $row["image_url"] . '" alt="">
-                <div class="down-content">
-                  <h4>' . $row["name"] . '</h4>
-                  <p>' . $row["description"] . '</p>
-                  <div class="price-stock">
-                    <span>Price: ' . $row["price"] . '$</span><br>
-                    <span>Stock: ' . $row["stock"] . '</span>
+              // Check if there are any products
+              if (mysqli_num_rows($result) > 0) {
+                // Get the current page number from the URL
+                $page = isset($_GET['page']) ? $_GET['page'] : 1;
+
+                // Calculate the starting index of the products for the current page
+                $start = ($page - 1) * 6;
+
+                // Fetch only 6 products for the current page
+                $sql .= " LIMIT $start, 6";
+                $result = mysqli_query($conn, $sql);
+
+                // Loop through each product and display it
+                while ($row = mysqli_fetch_assoc($result)) {
+                  ?>
+                  <div class="col-md-4">
+                    <div class="service-item">
+                      <img src="<?php echo $row['image_url']; ?>" alt="">
+                      <div class="down-content">
+                        <h4><?php echo $row['name']; ?></h4>
+                        <div style="margin-bottom:10px;">
+                          <span>
+                            <del><sup>$</sup><?php echo $row['price']; ?></del>
+                          </span>
+                        </div>
+
+                        <p><?php echo $row['description']; ?></p>
+                        <p>Stock: <?php echo $row['stock']; ?></p>
+                        <a href="page/product-details.php?id=<?php echo $row['id']; ?>" class="filled-button">View More</a>
+                      </div>
+                    </div>
+
+                    <br>
                   </div>
-                  <a href="page/product-details.php?id='. $row['id'] . '" class="filled-button">View More</a>
+                  <?php
+                }
+
+                // Calculate the total number of pages
+                $total_pages = ceil(mysqli_num_rows($result) / 6);
+
+                // Display the pagination links
+                ?>
+                <div class="col-md-12">
+                  <div class="pagination-container">
+                    <ul class="pagination">
+                      <?php
+                      for ($i = 1; $i <= $total_pages; $i++) {
+                        ?>
+                        <li class="<?php if ($i == $page) echo 'active'; ?>">
+                          <a href="landingpage.php?page=<?php echo $i; ?>"><?php echo $i; ?></a>
+                        </li>
+                        <?php
+                      }
+                      ?>
+                    </ul>
+                  </div>
                 </div>
-              </div>
-            </div>';
-          } else {
-            echo "No products found.";
-          }
-        }
-        ?>
+                <?php
+              } else {
+                echo "No products found.";
+              }
+              ?>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-  <br><br><br><br><br><br>  <br><br><br><br><br><br>  
-  
   <div class="new-arrivals">
     <div class="container">
       <div class="row">
@@ -188,31 +233,80 @@ include 'conect.php';
           </div>
         </div>
 
-        <?php
-        for ($i = 4; $i <= 6; $i++) {
-          $sql = "SELECT * FROM products WHERE id = $i";
-          $result = $conn->query($sql);
-          if ($result->num_rows > 0) {
-            $row = $result->fetch_assoc();
-            echo '<div class="col-md-4">
-              <div class="service-item" style="height: 400px;">
-                <img src="' . $row["image_url"] . '" alt="">
-                <div class="down-content">
-                  <h4>' . $row["name"] . '</h4>
-                  <p>' . $row["description"] . '</p>
-                  <div class="price-stock">
-                    <span>Price: $' . $row["price"] . '</span><br>
-                    <span>Stock: ' . $row["stock"] . '</span>
+        <div class="services">
+          <div class="container">
+            <div class="row">
+              <?php
+
+              // Fetch all products from the database
+              $sql = "SELECT * FROM products WHERE id BETWEEN 4 AND 6";
+              $result = mysqli_query($conn, $sql);
+
+              // Check if there are any products
+              if (mysqli_num_rows($result) > 0) {
+                // Get the current page number from the URL
+                $page = isset($_GET['page']) ? $_GET['page'] : 1;
+
+                // Calculate the starting index of the products for the current page
+                $start = ($page - 1) * 6;
+
+                // Fetch only 6 products for the current page
+                $sql .= " LIMIT $start, 6";
+                $result = mysqli_query($conn, $sql);
+
+                // Loop through each product and display it
+                while ($row = mysqli_fetch_assoc($result)) {
+                  ?>
+                  <div class="col-md-4">
+                    <div class="service-item">
+                      <img src="<?php echo $row['image_url']; ?>" alt="">
+                      <div class="down-content">
+                        <h4><?php echo $row['name']; ?></h4>
+                        <div style="margin-bottom:10px;">
+                          <span>
+                            <del><sup>$</sup><?php echo $row['price']; ?></del>
+                          </span>
+                        </div>
+
+                        <p><?php echo $row['description']; ?></p>
+                        <p>Stock: <?php echo $row['stock']; ?></p>
+                        <a href="page/product-details.php?id=<?php echo $row['id']; ?>" class="filled-button">View More</a>
+                      </div>
+                    </div>
+
+                    <br>
                   </div>
-                  <a href="page/product-details.php?id=' . $row['id'] . '" class="filled-button">View More</a>
+                  <?php
+                }
+
+                // Calculate the total number of pages
+                $total_pages = ceil(mysqli_num_rows($result) / 6);
+
+                // Display the pagination links
+                ?>
+                <div class="col-md-12">
+                  <div class="pagination-container">
+                    <ul class="pagination">
+                      <?php
+                      for ($i = 1; $i <= $total_pages; $i++) {
+                        ?>
+                        <li class="<?php if ($i == $page) echo 'active'; ?>">
+                          <a href="landingpage.php?page=<?php echo $i; ?>"><?php echo $i; ?></a>
+                        </li>
+                        <?php
+                      }
+                      ?>
+                    </ul>
+                  </div>
                 </div>
-              </div>
-            </div>';
-          } else {
-            echo "No products found.";
-          }
-        }
-        ?>
+                <?php
+              } else {
+                echo "No products found.";
+              }
+              ?>
+            </div>
+          </div>
+        </div>
 
             </div>
           </div>
@@ -221,9 +315,6 @@ include 'conect.php';
       </div>
     </div>
   </div>
-  <br><br><br><br><br><br>
-  <br><br><br><br><br><br>
-  <br><br><br><br><br><br>
   <div class="container">
     <div class="row">
       <div class="col-md-12">
