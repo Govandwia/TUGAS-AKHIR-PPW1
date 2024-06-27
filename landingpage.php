@@ -85,11 +85,10 @@ include 'conect.php';
       <div class="item item-1">
         <div class="img-fill">
           <div class="text-content">
-            <h6>lorem ipsum dolor sit amet!</h6>
-            <h4>Quam temporibus accusam <br> hic ducimus quia</h4>
-            <p>Magni deserunt dolorem consectetur adipisicing elit. Corporis molestiae optio, laudantium odio quod rerum
-              maiores, omnis unde quae illo.</p>
-            <a href="products.html" class="filled-button">Products</a>
+            <h6>Free Shipping!</h6>
+            <h4>Shop Laptops with No Shipping Fee</h4>
+            <p>Take advantage of our free shipping promo on every laptop purchase. Valid across Indonesia.</p>
+            <a href="page/products.php" class="filled-button">Products</a>
           </div>
         </div>
       </div>
@@ -98,11 +97,10 @@ include 'conect.php';
       <div class="item item-2">
         <div class="img-fill">
           <div class="text-content">
-            <h6>magni deserunt dolorem harum quas!</h6>
-            <h4>Aliquam iusto harum <br> ratione porro odio</h4>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. At culpa cupiditate mollitia adipisci assumenda
-              laborum eius quae quo excepturi, eveniet. Dicta nulla ea beatae consequuntur?</p>
-            <a href="about.html" class="filled-button">About Us</a>
+            <h6>Official Warranty</h6>
+            <h4>Quality Assurance and After-Sales Service</h4>
+            <p>We offer official warranties on all our laptop products. Buy with confidence and peace of mind.</p>
+            <a href="page/login.php" class="filled-button">login</a>
           </div>
         </div>
       </div>
@@ -111,11 +109,10 @@ include 'conect.php';
       <div class="item item-3">
         <div class="img-fill">
           <div class="text-content">
-            <h6>alias officia qui quae vitae natus!</h6>
-            <h4>Lorem ipsum dolor <br>sit amet, consectetur.</h4>
-            <p>Vivamus ut tellus mi. Nulla nec cursus elit, id vulputate mi. Sed nec cursus augue. Phasellus lacinia ac
-              sapien vitae dapibus. Mauris ut dapibus velit cras interdum nisl ac urna tempor mollis.</p>
-            <a href="contact.html" class="filled-button">Contact Us</a>
+            <h6>Best Deals This Week!</h6>
+            <h4>Up to 30% Off <br> on Latest Laptops</h4>
+            <p>Grab special offers on the latest laptops at the best prices. Don't miss out on this opportunity!</p>
+            <a href="page/checkout.php" class="filled-button">checkout</a>
           </div>
         </div>
       </div>
@@ -128,11 +125,11 @@ include 'conect.php';
     <div class="container">
       <div class="row">
         <div class="col-md-8">
-          <h4>Request a call back right now ?</h4>
-          <span>Mauris ut dapibus velit cras interdum nisl ac urna tempor mollis.</span>
+          <h4>Join Our Community Today!</h4>
+          <span>Sign up now to receive the latest updates, special offers, and exclusive deals on laptops.</span>
         </div>
         <div class="col-md-4">
-          <a href="contact.html" class="border-button">Contact Us</a>
+          <a href="page/signup.php" class="border-button">signup</a>
         </div>
       </div>
     </div>
@@ -144,7 +141,7 @@ include 'conect.php';
         <div class="col-md-12">
           <div class="section-heading">
             <h2>Featured <em>Products</em></h2>
-            <span>Aliquam id urna imperdiet libero mollis hendrerit</span>
+            <span>Discover our top-rated laptops, handpicked just for you.</span>
           </div>
         </div>
         <div class="services">
@@ -177,7 +174,7 @@ include 'conect.php';
                         <h4><?php echo $row['name']; ?></h4>
                         <div style="margin-bottom:10px;">
                           <span>
-                            <del><sup>$</sup><?php echo $row['price']; ?></del>
+                          <?php echo $row['price']; ?>$
                           </span>
                         </div>
 
@@ -191,28 +188,6 @@ include 'conect.php';
                   </div>
                   <?php
                 }
-
-                // Calculate the total number of pages
-                $total_pages = ceil(mysqli_num_rows($result) / 6);
-
-                // Display the pagination links
-                ?>
-                <div class="col-md-12">
-                  <div class="pagination-container">
-                    <ul class="pagination">
-                      <?php
-                      for ($i = 1; $i <= $total_pages; $i++) {
-                        ?>
-                        <li class="<?php if ($i == $page) echo 'active'; ?>">
-                          <a href="landingpage.php?page=<?php echo $i; ?>"><?php echo $i; ?></a>
-                        </li>
-                        <?php
-                      }
-                      ?>
-                    </ul>
-                  </div>
-                </div>
-                <?php
               } else {
                 echo "No products found.";
               }
@@ -264,7 +239,7 @@ include 'conect.php';
                         <h4><?php echo $row['name']; ?></h4>
                         <div style="margin-bottom:10px;">
                           <span>
-                            <del><sup>$</sup><?php echo $row['price']; ?></del>
+                            <?php echo $row['price']; ?>$
                           </span>
                         </div>
 
@@ -278,28 +253,6 @@ include 'conect.php';
                   </div>
                   <?php
                 }
-
-                // Calculate the total number of pages
-                $total_pages = ceil(mysqli_num_rows($result) / 6);
-
-                // Display the pagination links
-                ?>
-                <div class="col-md-12">
-                  <div class="pagination-container">
-                    <ul class="pagination">
-                      <?php
-                      for ($i = 1; $i <= $total_pages; $i++) {
-                        ?>
-                        <li class="<?php if ($i == $page) echo 'active'; ?>">
-                          <a href="landingpage.php?page=<?php echo $i; ?>"><?php echo $i; ?></a>
-                        </li>
-                        <?php
-                      }
-                      ?>
-                    </ul>
-                  </div>
-                </div>
-                <?php
               } else {
                 echo "No products found.";
               }
@@ -308,204 +261,123 @@ include 'conect.php';
           </div>
         </div>
 
-            </div>
-          </div>
-        </div>
-
       </div>
     </div>
+  </div>
+
+  </div>
+  </div>
   </div>
   <div class="container">
-    <div class="row">
-      <div class="col-md-12">
-        <div class="section-heading">
-          <h2>What they say <em>about us</em></h2>
-          <span>testimonials from our greatest clients</span>
-        </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="section-heading">
+        <h2>What They Say <em>About Us</em></h2>
+        <span>Testimonials from our satisfied customers</span>
       </div>
-      <div class="col-md-12">
-        <div class="owl-testimonials owl-carousel">
+    </div>
+    <div class="col-md-12">
+      <div class="owl-testimonials owl-carousel">
 
-          <div class="testimonial-item">
-            <div class="inner-content">
-              <h4>George Walker</h4>
-              <span>Chief Financial Analyst</span>
-              <p>"Nulla ullamcorper, ipsum vel condimentum congue, mi odio vehicula tellus, sit amet malesuada justo sem
-                sit amet quam. Pellentesque in sagittis lacus."</p>
-            </div>
-            <img src="http://placehold.it/60x60" alt="">
+        <div class="testimonial-item">
+          <div class="inner-content">
+            <h4>George Walker</h4>
+            <span>Chief Financial Analyst</span>
+            <p>"The laptop I purchased from here has been amazing. Great performance and excellent customer service. Highly recommend!"</p>
           </div>
-
-          <div class="testimonial-item">
-            <div class="inner-content">
-              <h4>John Smith</h4>
-              <span>Market Specialist</span>
-              <p>"In eget leo ante. Sed nibh leo, laoreet accumsan euismod quis, scelerisque a nunc. Mauris accumsan,
-                arcu id ornare malesuada, est nulla luctus nisi."</p>
-            </div>
-            <img src="http://placehold.it/60x60" alt="">
-          </div>
-
-          <div class="testimonial-item">
-            <div class="inner-content">
-              <h4>David Wood</h4>
-              <span>Chief Accountant</span>
-              <p>"Ut ultricies maximus turpis, in sollicitudin ligula posuere vel. Donec finibus maximus neque, vitae
-                egestas quam imperdiet nec. Proin nec mauris eu tortor consectetur tristique."</p>
-            </div>
-            <img src="http://placehold.it/60x60" alt="">
-          </div>
-
-          <div class="testimonial-item">
-            <div class="inner-content">
-              <h4>Andrew Boom</h4>
-              <span>Marketing Head</span>
-              <p>"Curabitur sollicitudin, tortor at suscipit volutpat, nisi arcu aliquet dui, vitae semper sem turpis
-                quis libero. Quisque vulputate lacinia nisl ac lobortis."</p>
-            </div>
-            <img src="http://placehold.it/60x60" alt="">
-          </div>
-
+          <img src="http://placehold.it/60x60" alt="George Walker">
         </div>
+
+        <div class="testimonial-item">
+          <div class="inner-content">
+            <h4>John Smith</h4>
+            <span>Market Specialist</span>
+            <p>"Excellent range of laptops to choose from. The support team helped me pick the perfect one for my needs."</p>
+          </div>
+          <img src="http://placehold.it/60x60" alt="John Smith">
+        </div>
+
+        <div class="testimonial-item">
+          <div class="inner-content">
+            <h4>David Wood</h4>
+            <span>Chief Accountant</span>
+            <p>"Great prices and fast delivery. The laptop works perfectly, and the overall shopping experience was fantastic."</p>
+          </div>
+          <img src="http://placehold.it/60x60" alt="David Wood">
+        </div>
+
+        <div class="testimonial-item">
+          <div class="inner-content">
+            <h4>Andrew Boom</h4>
+            <span>Marketing Head</span>
+            <p>"Very satisfied with the purchase. The laptop exceeded my expectations, and the customer service was outstanding."</p>
+          </div>
+          <img src="http://placehold.it/60x60" alt="Andrew Boom">
+        </div>
+
       </div>
     </div>
   </div>
+</div>
+
+
+
+  <br>
+  <br>
+  <br>
+  <br>
   </div>
-
-  <div class="callback-form">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          <div class="section-heading">
-            <h2>Request a <em>call back</em></h2>
-            <span>Etiam suscipit ante a odio consequat</span>
-          </div>
-        </div>
-        <div class="col-md-12">
-          <div class="contact-form">
-            <form id="contact" action="" method="post">
-              <div class="row">
-                <div class="col-lg-4 col-md-12 col-sm-12">
-                  <fieldset>
-                    <input name="name" type="text" class="form-control" id="name" placeholder="Full Name" required="">
-                  </fieldset>
-                </div>
-                <div class="col-lg-4 col-md-12 col-sm-12">
-                  <fieldset>
-                    <input name="email" type="text" class="form-control" id="email" pattern="[^ @]*@[^ @]*"
-                      placeholder="E-Mail Address" required="">
-                  </fieldset>
-                </div>
-                <div class="col-lg-4 col-md-12 col-sm-12">
-                  <fieldset>
-                    <input name="subject" type="text" class="form-control" id="subject" placeholder="Subject"
-                      required="">
-                  </fieldset>
-                </div>
-                <div class="col-lg-12">
-                  <fieldset>
-                    <textarea name="message" rows="6" class="form-control" id="message" placeholder="Your Message"
-                      required=""></textarea>
-                  </fieldset>
-                </div>
-                <div class="col-lg-12">
-                  <fieldset>
-                    <button type="submit" id="form-submit" class="border-button">Send Message</button>
-                  </fieldset>
-                </div>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-
-      <br>
-      <br>
-      <br>
-      <br>
-    </div>
   </div>
 
   <!-- Footer Starts Here -->
   <footer>
-    <div class="container">
-      <div class="row">
-        <div class="col-md-3 footer-item">
-          <h4>Mobile Store</h4>
-          <p>Vivamus tellus mi. Nulla ne cursus elit,vulputate. Sed ne cursus augue hasellus lacinia sapien vitae.</p>
-          <ul class="social-icons">
-            <li><a rel="nofollow" href="#" target="_blank"><i class="fa fa-facebook"></i></a></li>
-            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-          </ul>
-        </div>
-        <div class="col-md-3 footer-item">
-          <h4>Useful Links</h4>
-          <ul class="menu-list">
-            <li><a href="#">Vivamus ut tellus mi</a></li>
-            <li><a href="#">Nulla nec cursus elit</a></li>
-            <li><a href="#">Vulputate sed nec</a></li>
-            <li><a href="#">Cursus augue hasellus</a></li>
-            <li><a href="#">Lacinia ac sapien</a></li>
-          </ul>
-        </div>
-        <div class="col-md-3 footer-item">
-          <h4>Additional Pages</h4>
-          <ul class="menu-list">
-            <li><a href="#">Products</a></li>
-            <li><a href="#">About Us</a></li>
-            <li><a href="#">Blog</a></li>
-            <li><a href="#">Contact Us</a></li>
-            <li><a href="#">Terms</a></li>
-          </ul>
-        </div>
-        <div class="col-md-3 footer-item last-item">
-          <h4>Contact Us</h4>
-          <div class="contact-form">
-            <form id="contact footer-contact" action="" method="post">
-              <div class="row">
-                <div class="col-lg-12 col-md-12 col-sm-12">
-                  <fieldset>
-                    <input name="name" type="text" class="form-control" id="name" placeholder="Full Name" required="">
-                  </fieldset>
-                </div>
-                <div class="col-lg-12 col-md-12 col-sm-12">
-                  <fieldset>
-                    <input name="email" type="text" class="form-control" id="email" pattern="[^ @]*@[^ @]*"
-                      placeholder="E-Mail Address" required="">
-                  </fieldset>
-                </div>
-                <div class="col-lg-12">
-                  <fieldset>
-                    <textarea name="message" rows="6" class="form-control" id="message" placeholder="Your Message"
-                      required=""></textarea>
-                  </fieldset>
-                </div>
-                <div class="col-lg-12">
-                  <fieldset>
-                    <button type="submit" id="form-submit" class="filled-button">Send Message</button>
-                  </fieldset>
-                </div>
-              </div>
-            </form>
-          </div>
-        </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 footer-item">
+        <h4>GG LABS</h4>
+        <p>Your one-stop shop for the latest and greatest laptops. Quality products and exceptional customer service.</p>
+        <ul class="social-icons">
+          <li><a rel="nofollow" href="#" target="_blank"><i class="fa fa-facebook"></i></a></li>
+          <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+          <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+        </ul>
       </div>
-    </div>
-  </footer>
-
-  <div class="sub-footer">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          <p>
-            Copyright © 2020 Company Name
-            - Template by: <a href="https://www.phpjabbers.com/">PHPJabbers.com</a>
-          </p>
-        </div>
+      <div class="col-md-4 footer-item">
+        <h4>Useful Links</h4>
+        <ul class="menu-list">
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Shop</a></li>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+      <div class="col-md-34footer-item">
+        <h4>Additional Pages</h4>
+        <ul class="menu-list">
+          <li><a href="#">Products</a></li>
+          <li><a href="#">Our Team</a></li>
+          <li><a href="#">Testimonials</a></li>
+          <li><a href="#">FAQ</a></li>
+          <li><a href="#">Terms & Conditions</a></li>
+        </ul>
       </div>
     </div>
   </div>
+</footer>
+
+<div class="sub-footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <p>
+          Copyright © 2024 GG LABS
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
 
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.min.js"></script>

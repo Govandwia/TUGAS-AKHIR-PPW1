@@ -54,7 +54,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     }
                 } else {
                     // Display an error message if username doesn't exist
-                    echo '<script>alert("Username does not exist.");</script>';
+                    echo '<script>alert("username tidak di temukan .");</script>';
                 }
             } else {
                 echo "Oops! Something went wrong. Please try again later.";
